@@ -1,0 +1,47 @@
+---
+// Shown when someone visits an address that doesn't exist (e.g. a mistyped link)
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Page not found — Chisom Lewise" description="This page doesn't exist. Head back to Chisom Lewise's portfolio.">
+  <Nav />
+
+  <main class="relative isolate overflow-hidden px-5 pt-16 pb-8 text-center md:px-10 md:pt-24">
+    <!-- Same soft background as the homepage hero -->
+    <div class="pointer-events-none absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,black_55%,transparent)]" aria-hidden="true">
+      <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(49,49,49,0.16)_1px,transparent_1.5px)] bg-[size:22px_22px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_40%,black_25%,transparent_78%)]"></div>
+      <div class="absolute top-[10%] left-1/2 h-[300px] w-[420px] -translate-x-[70%] rounded-full bg-brand/20 blur-[90px]"></div>
+      <div class="absolute top-[22%] left-1/2 h-[280px] w-[380px] -translate-x-[20%] rounded-full bg-[#ffc39a]/30 blur-[90px]"></div>
+    </div>
+
+    <p class="text-[min(38vw,240px)] leading-none font-semibold tracking-[-0.03em] text-ghost select-none" aria-hidden="true">404</p>
+
+    <h1 class="-mt-2 text-[28px] leading-[36px] font-medium md:-mt-4 md:text-[36px] md:leading-[44px]">
+      This page took a <span class="text-brand">wrong turn</span>
+    </h1>
+    <p class="mx-auto mt-4 max-w-[480px] text-[16px] leading-[26px] text-body md:text-[18px] md:leading-[28px]">
+      The link might be mistyped, or the page may have moved. Let's get you back to the good stuff.
+    </p>
+
+    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+      <a
+        href="/#work"
+        class="flex h-[52px] w-full max-w-[240px] items-center justify-center rounded-[50px] bg-ink px-7 text-[16px] font-medium text-white shadow-[inset_3px_5px_5.2px_0px_rgba(119,119,119,0.25),inset_0px_4px_6.2px_0px_rgba(152,152,152,0.25)] transition-transform hover:-translate-y-0.5 sm:w-auto"
+      >
+        See my work
+      </a>
+      <a
+        href="/"
+        class="flex h-[52px] w-full max-w-[240px] items-center justify-center rounded-[50px] border border-ink/15 bg-white/60 px-7 text-[16px] font-medium text-ink transition-colors hover:bg-white sm:w-auto"
+      >
+        Go to homepage
+      </a>
+    </div>
+  </main>
+
+  <div class="mt-12 md:mt-20">
+    <Footer />
+  </div>
+</Layout>
