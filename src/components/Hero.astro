@@ -1,5 +1,8 @@
 ---
 import SayHi from "./SayHi.astro";
+
+// Headline words, revealed one by one when the page opens ("Designer" is the blue one)
+const headline = "A Product Designer building purposeful digital experiences for people and businesses.".split(" ");
 ---
 
 <!-- Hero: the background runs up behind the floating nav -->
@@ -34,8 +37,16 @@ import SayHi from "./SayHi.astro";
         <SayHi />
       </div>
 
-      <p class="text-[clamp(2rem,3.6vw,3.25rem)] leading-[1.25] md:leading-[1.2] font-medium text-ink">
-        A Product <span class="text-brand">Designer</span> building purposeful digital experiences for people and businesses.
+      <!-- Word-by-word reveal: each word rises out of a soft blur, one after another (plays once) -->
+      <p class="text-[clamp(2rem,3.6vw,3.25rem)] leading-[1.25] font-medium text-ink md:leading-[1.2]">
+        {headline.map((word, i) => (
+          <>
+            <span
+              class:list={["inline-block motion-safe:animate-word-in", word === "Designer" && "text-brand"]}
+              style={`animation-delay: ${150 + i * 65}ms`}
+            >{word}</span>{i < headline.length - 1 && " "}
+          </>
+        ))}
       </p>
     </div>
   </div>
