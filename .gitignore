@@ -1,3 +1,11 @@
 node_modules/
 dist/
-.vite/
+.astro/
+.vercel/
+.claude/
+
+# logs and local env
+*.log
+.env
+.env.*
+.DS_Store

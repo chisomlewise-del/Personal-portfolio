@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import vscode from "../assets/tool-vscode.png";
+
+// Each tile is a white rounded box. Icon sizes come from the Figma file.
+// "square" tiles are a fixed 100×100; the rest are the icon + 20px padding.
+const tools = [
+  { name: "Claude", src: "/images/tool-claude.svg", w: 60, h: 60 },
+  { name: "ChatGPT", src: "/images/tool-chatgpt.svg", w: 60, h: 59.46 },
+  { name: "Framer", src: "/images/tool-framer.svg", w: 46.59, h: 69.89, square: true },
+  { name: "Figma", src: "/images/tool-figma.svg", w: 42.61, h: 63.92, square: true },
+  { name: "VS Code", image: vscode, w: 60, h: 60 },
+  { name: "Notion", src: "/images/tool-notion.svg", w: 60, h: 62.5 },
+  { name: "Claude", src: "/images/tool-claude.svg", w: 60, h: 60 },
+  { name: "Cursor", src: "/images/tool-cursor.svg", w: 55.3, h: 63 },
+  { name: "Framer", src: "/images/tool-framer.svg", w: 46.59, h: 69.89, square: true },
+];
+---
+
+<section class="flex flex-col items-center gap-6 pt-16 md:pt-[65px]" aria-labelledby="tools-title">
+  <h2 data-reveal="up" id="tools-title" class="text-[28px] leading-[36px] font-medium tracking-[0.4px] text-ink md:text-[32px] md:leading-[42px]">My Creative Tools</h2>
+
+  <!-- The row is drawn twice and slides left forever, so it never runs out. -->
+  <!-- Same endless scroll as the About page photos: never pauses, even on hover -->
+  <div class="w-full overflow-hidden motion-reduce:overflow-x-auto">
+  <div class="flex w-max items-center pb-1 motion-safe:animate-marquee">
+    {[0, 1].map((copy) => (
+      <ul class="flex items-center gap-[74px] pr-[74px]" aria-hidden={copy === 1 ? "true" : undefined}>
+        {tools.map((tool) => (
+          <li
+            class:list={[
+              "flex items-center justify-center rounded-[25px] bg-white shadow-[0px_1px_4px_0px_rgba(12,12,13,0.05)]",
+              tool.square ? "size-[100px]" : "p-5",
+            ]}
+            title={tool.name}
+          >
+            {tool.image ? (
+              <Image src={tool.image} alt={copy ? "" : tool.name} width={120} style={`width:${tool.w}px;height:${tool.h}px`} />
+            ) : (
+              <img src={tool.src} alt={copy ? "" : tool.name} width={tool.w} height={tool.h} loading="lazy" />
+            )}
+          </li>
+        ))}
+      </ul>
+    ))}
+  </div>
+  </div>
+</section>

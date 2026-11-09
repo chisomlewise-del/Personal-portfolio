@@ -1,0 +1,148 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import CaseHeader from "../components/case-study/CaseHeader.astro";
+
+import laptop from "../assets/base360/laptop.jpg";
+import landing1 from "../assets/base360/landing-1.png";
+import landing2 from "../assets/base360/landing-2.png";
+import landing3 from "../assets/base360/landing-3.png";
+import landing4 from "../assets/base360/landing-4.png";
+
+const meta = [
+  { label: "ROLE", value: "Product Designer" },
+  { label: "TIMELINE", value: "1 Week" },
+  { label: "YEAR", value: "2026" },
+];
+
+// The finished landing page, shown in four parts (top to bottom)
+const landingSections = [
+  { src: landing1, alt: "Base360 landing page: hero, product dashboard, channel logos and key numbers" },
+  { src: landing2, alt: "Base360 landing page: product features and the 'follow one comment' walkthrough" },
+  { src: landing3, alt: "Base360 landing page: how to get started in three steps" },
+  { src: landing4, alt: "Base360 landing page: customer reviews, final call to action and footer" },
+];
+
+const wideSizes = "(min-width: 1440px) 1312px, 92vw";
+const wideWidths = [800, 1312, 1800, 2624];
+
+const h2 = "text-[24px] leading-[32px] font-medium tracking-[-0.165px] text-ink md:text-[28px] md:leading-[36px]";
+---
+
+<Layout title="Base 360 Landing Page — Chisom Lewise" description="An AI Powered Customer Engagement Platform">
+  <Nav />
+
+  <main class="mx-auto max-w-[1440px] px-5 pt-10 text-ink md:px-10 md:pt-[65px] xl:px-16">
+    <CaseHeader title="Base 360 Landing Page" subtitle="An AI Powered Customer Engagement Platform" meta={meta} />
+
+    <div class="case-flow mt-14 text-[16px] leading-[26px] tracking-[0.027px] text-nav md:mt-24 md:text-[18px] md:leading-[28px]">
+      <section class="flex flex-col gap-3">
+        <h2 class={h2}>Project Overview</h2>
+        <div class="copy">
+          <p>I designed a landing page for an AI-powered customer engagement platform.</p>
+          <p>The challenge wasn't simply to create an attractive website. The platform combined several complex capabilities including AI agents, customer communication, CRM, and marketing automation into a single product.</p>
+          <p>The real challenge was communicating all of that in a way that felt simple, engaging, and easy to understand within the first few seconds of landing on the page.</p>
+        </div>
+      </section>
+
+      <Image
+        src={laptop}
+        alt="The Base360 landing page on a MacBook resting on a stone pedestal"
+        widths={wideWidths}
+        sizes={wideSizes}
+        class="aspect-[1315/823] w-full rounded-[20px] object-cover md:rounded-[30px]"
+        loading="eager"
+      />
+
+      <!-- Written story: narrower column, like the design -->
+      <div class="section-start flex max-w-[720px] flex-col gap-10 md:gap-14">
+        <section class="flex flex-col gap-3">
+          <h2 class={h2}>My Goal</h2>
+          <div class="copy">
+            <p>I wanted the landing page to accomplish three things:</p>
+            <ol class="list-decimal pl-[27px]">
+              <li>Capture attention immediately</li>
+              <li>Simplify a technically complex product</li>
+              <li>Guide visitors naturally toward taking action</li>
+            </ol>
+            <p>Rather than presenting a list of features, I focused on creating a narrative that demonstrates how the product works in a real-world scenario.</p>
+          </div>
+        </section>
+
+        <section class="flex flex-col gap-3">
+          <h2 class={h2}>Understanding the Problem</h2>
+          <div class="copy">
+            <p>Modern businesses communicate with customers across multiple platforms.</p>
+            <ol>
+              <li>1. Social media comments</li>
+              <li>2. Direct messages</li>
+              <li>3. Email</li>
+              <li>4. Messaging apps</li>
+              <li>5. Phone calls</li>
+            </ol>
+            <p>Managing these conversations across disconnected tools often leads to missed opportunities, delayed responses, and fragmented customer data.</p>
+            <p>The product solves this by bringing every conversation into one unified system, automating repetitive tasks with AI, and turning conversations into qualified sales opportunities.</p>
+          </div>
+        </section>
+
+        <section class="flex flex-col gap-3">
+          <h2 class={h2}>Design Strategy</h2>
+          <div class="copy">
+            <div>
+              <p>Instead of asking:</p>
+              <p class="font-semibold">"How do I showcase every feature?"</p>
+            </div>
+            <div>
+              <p>I asked:</p>
+              <p class="font-semibold">"How can I help someone understand this product in under a minute?"</p>
+            </div>
+            <p>That question shaped every design decision.</p>
+            <p>I built the experience around a single customer journey rather than a feature list.</p>
+            <p>This approach reduces cognitive load while making the product feel more relatable and easier to understand.</p>
+          </div>
+        </section>
+
+        <section class="flex flex-col gap-3">
+          <h2 class={h2}>Design Decision</h2>
+          <div class="copy">
+            <div>
+              <h3 class="font-semibold">1. Clean Visual Hierarchy</h3>
+              <p>I used generous spacing and consistent typography to improve readability and guide attention through the page.</p>
+            </div>
+            <div>
+              <h3 class="font-semibold">2. Product-First Visuals</h3>
+              <p>Rather than relying on decorative illustrations, I chose realistic product mockups to reinforce credibility and help visitors imagine using the platform.</p>
+            </div>
+            <div>
+              <h3 class="font-semibold">3. Progressive Disclosure</h3>
+              <p>Information is introduced gradually.</p>
+              <p>Each section builds on the previous one, preventing users from feeling overwhelmed while maintaining engagement throughout the page.</p>
+            </div>
+            <div>
+              <h3 class="font-semibold">4. Conversion-Focused Layout</h3>
+              <p>Calls-to-action are strategically placed throughout the page instead of appearing only once.</p>
+              <p>This ensures visitors always have an opportunity to take the next step after understanding a key piece of information.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- The finished landing page -->
+      {landingSections.map((section, i) => (
+        <Image
+          src={section.src}
+          alt={section.alt}
+          widths={wideWidths}
+          sizes={wideSizes}
+          class:list={["h-auto w-full", i === 0 && "section-start"]}
+        />
+      ))}
+    </div>
+  </main>
+
+  <div class="mt-4 md:mt-12">
+    <Footer />
+  </div>
+</Layout>

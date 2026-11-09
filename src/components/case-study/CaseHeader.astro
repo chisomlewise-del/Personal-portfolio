@@ -1,0 +1,36 @@
+---
+// Back button, page title, subtitle and the ROLE / INDUSTRY / … row.
+// Shared by every case study page.
+interface Props {
+  title: string;
+  subtitle: string;
+  meta: { label: string; value: string }[];
+}
+const { title, subtitle, meta } = Astro.props;
+---
+
+<a
+  href="/#work"
+  data-reveal="up"
+  class="inline-flex h-[46px] items-center gap-2 rounded-[50px] bg-card px-4 text-[16px] leading-[24px] font-medium tracking-[0.18px] transition-colors hover:bg-[#e2e2e2]"
+>
+  <img src="/images/arrow-back.svg" alt="" width="22" height="22" />
+  Back
+</a>
+
+<header class="mt-8 flex flex-col gap-8">
+  <div class="flex flex-col gap-6 border-b border-rule pb-6">
+    <div class="flex max-w-[1203px] flex-col gap-3" data-reveal="up" style="--reveal-delay: 90ms">
+      <h1 class="text-[28px] leading-[36px] font-medium md:text-[36px] md:leading-[44px]">{title}</h1>
+      <p class="text-[16px] leading-[28px] tracking-[-0.165px] md:text-[18px]">{subtitle}</p>
+    </div>
+  </div>
+  <dl class="grid grid-cols-2 gap-x-6 gap-y-6 tracking-[-0.165px] md:grid-cols-4 lg:flex lg:gap-[217px]">
+    {meta.map((item, i) => (
+      <div class="flex flex-col gap-3 lg:min-w-[159px]" data-reveal="up" style={`--reveal-delay: ${200 + i * 70}ms`}>
+        <dt class="text-[14px] leading-[20px] tracking-[0.08em] text-label">{item.label}</dt>
+        <dd class="text-[18px] leading-[24px] font-medium">{item.value}</dd>
+      </div>
+    ))}
+  </dl>
+</header>

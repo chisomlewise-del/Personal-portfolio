@@ -1,0 +1,16 @@
+---
+// A heading followed by paragraphs. Reused on every case study page.
+interface Props {
+  title: string;
+  paragraphs: string[];
+  class?: string;
+}
+const { title, paragraphs, class: className } = Astro.props;
+---
+
+<section class:list={["flex flex-col gap-3", className]}>
+  <h2 class="text-[24px] leading-[32px] font-medium tracking-[-0.165px] md:text-[28px] md:leading-[36px]">{title}</h2>
+  <div class="copy text-[16px] leading-[26px] tracking-[0.15px] md:text-[18px] md:leading-[28px]">
+    {paragraphs.map((p) => <p>{p}</p>)}
+  </div>
+</section>

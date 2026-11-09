@@ -1,0 +1,52 @@
+---
+import SayHi from "./SayHi.astro";
+---
+
+<!-- Hero: the background runs up behind the floating nav -->
+<div class="relative isolate overflow-x-clip -mt-[76px] pt-[76px] pb-8 md:-mt-[84px] md:pt-[84px] md:pb-10">
+  <!-- Subtle background: a fading dot grid and two soft, slowly drifting colour glows -->
+  <div class="pointer-events-none absolute inset-x-0 top-0 -bottom-24 -z-10 overflow-hidden [mask-image:linear-gradient(to_bottom,black_55%,transparent)]" aria-hidden="true">
+    <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(49,49,49,0.16)_1px,transparent_1.5px)] bg-[size:22px_22px] [mask-image:radial-gradient(ellipse_75%_70%_at_50%_42%,black_25%,transparent_78%)]"></div>
+    <div class="absolute top-[22%] left-1/2 h-[260px] w-[320px] -translate-x-[75%] rounded-full bg-brand/25 blur-[70px] motion-safe:animate-drift md:h-[420px] md:w-[640px] md:blur-[100px]"></div>
+    <div class="absolute top-[34%] left-1/2 h-[240px] w-[300px] -translate-x-[15%] rounded-full bg-[#ffc39a]/35 blur-[70px] motion-safe:animate-drift-slow md:h-[380px] md:w-[560px] md:blur-[100px]"></div>
+  </div>
+
+<section class="mx-auto flex max-w-[1440px] flex-col items-center gap-6 px-5 pt-14 text-center md:px-10 md:pt-20 xl:px-[108px]">
+  <div class="flex w-full flex-col items-center gap-2.5">
+    <p class="flex items-center gap-3 text-[15px] leading-[1.5] font-medium text-ink-soft">
+      <!-- Live "online" signal: a green dot with a soft ripple -->
+      <span class="relative flex size-6 items-center justify-center" aria-hidden="true">
+        <span class="absolute inset-0 rounded-full bg-[#13dca0]/35 motion-safe:animate-ripple"></span>
+        <span class="absolute inset-0 rounded-full bg-[#13dca0]/25 motion-safe:animate-ripple-late"></span>
+        <span class="relative flex size-6 items-center justify-center rounded-full bg-[#13dca0]">
+          <span class="size-2.5 rounded-full bg-white motion-safe:animate-glow"></span>
+        </span>
+      </span>
+      Available for work
+    </p>
+
+    <div class="flex w-full flex-col items-center gap-3">
+      <div class="flex items-center gap-[5px]">
+        <h1 class="text-[28px] leading-[36px] font-medium tracking-[0.4px] text-black md:text-[32px] md:leading-[40px]">
+          Hi, I’m Chisom
+        </h1>
+        <!-- Photo: sways gently; on hover (or tap on phones) it says hi -->
+        <SayHi />
+      </div>
+
+      <p class="text-[clamp(2rem,3.6vw,3.25rem)] leading-[1.25] md:leading-[1.2] font-medium text-ink">
+        A Product <span class="text-brand">Designer</span> building purposeful digital experiences for people and businesses.
+      </p>
+    </div>
+  </div>
+
+  <a
+    href="https://calendly.com/chisomlewise"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="flex h-[52px] w-[150px] items-center justify-center rounded-[50px] border border-ink-soft bg-ink text-[16px] leading-[24px] font-medium tracking-[0.18px] text-white shadow-[inset_3px_5px_5.2px_0px_rgba(119,119,119,0.25),inset_0px_4px_6.2px_0px_rgba(152,152,152,0.25)] transition-transform hover:-translate-y-0.5"
+  >
+    Lets Talk<span class="sr-only"> (book a call on Calendly, opens in a new tab)</span>
+  </a>
+</section>
+</div>

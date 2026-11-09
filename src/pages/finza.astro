@@ -1,0 +1,202 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import CaseHeader from "../components/case-study/CaseHeader.astro";
+import TextBlock from "../components/case-study/TextBlock.astro";
+
+import overview from "../assets/finza/overview.png";
+import problem from "../assets/finza/problem.png";
+import solution from "../assets/finza/solution.png";
+import homePhone from "../assets/finza/home-phone.png";
+import transactionsTop from "../assets/finza/transactions-top.png";
+import transactionsBottom from "../assets/finza/transactions-bottom.png";
+import cardHero from "../assets/finza/card-hero.png";
+import cardRow1 from "../assets/finza/card-row-1.png";
+import cardRow2 from "../assets/finza/card-row-2.png";
+import budget1 from "../assets/finza/budget-1.png";
+import budget2 from "../assets/finza/budget-2.png";
+import otherScreens from "../assets/finza/other-screens.png";
+
+const meta = [
+  { label: "ROLE", value: "Product Designer" },
+  { label: "TIMELINE", value: "3 Weeks" },
+  { label: "INDUSTRY", value: "Fintech" },
+  { label: "YEAR", value: "2026" },
+];
+
+// Shared settings for the big full-width images
+const wideSizes = "(min-width: 1440px) 1312px, 92vw";
+const wideWidths = [800, 1312, 1800, 2624];
+
+// Shared styles for the grey feature cards
+const card = "overflow-hidden rounded-[20px] bg-[#efefef] px-5 py-8 md:rounded-[30px] md:px-10";
+const featureTitle = "text-[24px] leading-[32px] font-medium md:text-[28px] md:leading-[36px]";
+const featureText = "text-[16px] leading-[26px] tracking-[0.027px] md:text-[18px] md:leading-[28px]";
+---
+
+<Layout title="Finza Case Study — Chisom Lewise" description="Finza: a multi-currency fintech mobile app">
+  <Nav />
+
+  <main class="mx-auto max-w-[1440px] px-5 pt-10 text-ink md:px-10 md:pt-[65px] xl:px-16">
+    <CaseHeader title="Finza" subtitle="A Fintech Mobile App" meta={meta} />
+
+    <div class="case-flow mt-14 md:mt-24">
+      <TextBlock
+        title="Project Overview"
+        paragraphs={[
+          "Finza is a multi-currency fintech mobile application that enables users to manage money across NGN, USD, and GBP, send and receive funds, convert currencies, pay bills, and spend globally using a virtual card all while tracking and managing their finances through built-in budgeting and insights tools.",
+        ]}
+      />
+
+      <Image
+        src={overview}
+        alt="Finza brand: a lime hoodie and business cards with the Finza logo"
+        widths={wideWidths}
+        sizes={wideSizes}
+        class="aspect-[1317/523] w-full rounded-[20px] object-cover md:rounded-[30px]"
+        loading="eager"
+      />
+
+      <section class="section-start flex flex-col gap-3 text-nav">
+        <h2 class="text-[24px] leading-[32px] font-medium tracking-[-0.165px] text-ink md:text-[28px] md:leading-[36px]">Problem Statement</h2>
+        <p class="max-w-[720px] text-[16px] leading-[26px] tracking-[0.027px] md:text-[18px] md:leading-[28px]">
+          Managing money across local and international needs is often fragmented and mentally demanding. Users switch between multiple apps for transfers, foreign currency transactions, virtual cards, and bill payments, with no clear way to see or understand their overall financial picture. This becomes even more challenging when dealing with different currencies like NGN, USD, and GBP, as users are forced to calculate conversions themselves and lack tools to track spending or stay within budget. The result is a disconnected experience that prioritizes transactions but offers little clarity or control over personal finances.
+        </p>
+      </section>
+
+      <Image
+        src={problem}
+        alt="Finza social profile and app icon on a phone home screen"
+        widths={wideWidths}
+        sizes={wideSizes}
+        class="aspect-[1317/635] w-full rounded-[20px] object-cover md:rounded-[30px]"
+      />
+
+      <section class="section-start flex flex-col gap-3 text-nav">
+        <h2 class="text-[24px] leading-[32px] font-medium text-ink md:text-[28px] md:leading-[36px]">The Solution</h2>
+        <ol class="flex max-w-[720px] list-decimal flex-col gap-3 pl-[27px] md:gap-4 text-[16px] leading-[26px] tracking-[0.027px] md:text-[18px] md:leading-[28px]">
+          <li>
+            Finza brings these fragmented experiences into a single, seamless platform where users can manage multiple currencies, send and receive money, pay bills, and spend globally through a virtual card. Beyond enabling transactions, the app introduces built-in budgeting and insights that automatically track spending across currencies and present it in a unified, easy-to-understand view.
+          </li>
+          <li>
+            By combining everyday financial actions with smart money management, Finza transforms from just a payment tool into a system that helps users gain clarity, make better decisions, and stay in control of their finances.
+          </li>
+        </ol>
+      </section>
+
+      <Image
+        src={solution}
+        alt="The Finza home screen on an iPhone"
+        widths={wideWidths}
+        sizes={wideSizes}
+        class="aspect-[1317/1010] w-full rounded-[20px] object-cover md:rounded-[30px]"
+      />
+
+      <!-- Home Screen: phone left, text right -->
+      <section class:list={[card, "section-start flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-[80px] lg:px-0 lg:pt-[58px] lg:pb-[58px] lg:pl-[109px]"]}>
+        <div class="flex flex-col gap-3 text-nav lg:order-2 lg:max-w-[566px] lg:pt-[274px]">
+          <h2 class={featureTitle}>Home Screen</h2>
+          <p class={featureText}>
+            The Finza home screen was designed to give users a clear and centralized overview of their finances, allowing them to quickly access their balance, perform key actions like funding, transfers, and currency conversion, while also keeping track of recent transactions, bill payment services, and rewards in one seamless experience.
+          </p>
+        </div>
+        <Image
+          src={homePhone}
+          alt="Finza home screen"
+          widths={[436, 872]}
+          sizes="(min-width: 1024px) 436px, 80vw"
+          class="mx-auto w-full max-w-[320px] lg:order-1 lg:mx-0 lg:max-w-[436px] lg:shrink-0"
+        />
+      </section>
+
+      <!-- Transaction Screen: phone split across two lime blocks -->
+      <section class:list={[card, "grid gap-6 lg:grid-cols-2 lg:gap-0 lg:px-0 lg:pt-[68px] lg:pb-[68px]"]}>
+        <div class="flex flex-col gap-3 lg:col-start-2 lg:row-start-1 lg:max-w-[566px] lg:pt-[163px] lg:pl-[37px]">
+          <h2 class={featureTitle}>Transaction Screen</h2>
+          <p class={featureText}>
+            The transaction screen was designed to give users a complete overview of their financial activities across all wallets and services within the app. Users can easily track transfers, currency conversions, card payments, bill payments, and wallet funding activities, while also viewing transaction details such as amount, date, status, and transaction type, helping them stay informed and organized with their finances.
+          </p>
+        </div>
+        <Image
+          src={transactionsTop}
+          alt="Finza transactions screen, top half"
+          widths={[536, 1072]}
+          sizes="(min-width: 1024px) 536px, 90vw"
+          class="w-full max-w-[536px] justify-self-center rounded-[18px] lg:col-start-1 lg:row-start-1 lg:ml-[70px] lg:justify-self-start"
+        />
+        <Image
+          src={transactionsBottom}
+          alt="Finza transactions screen, bottom half"
+          widths={[549, 1098]}
+          sizes="(min-width: 1024px) 549px, 90vw"
+          class="w-full max-w-[549px] justify-self-center rounded-[18px] lg:col-start-2 lg:row-start-2 lg:justify-self-start"
+        />
+      </section>
+
+      <!-- Virtual Card Screen: lime block + text, then six card screens -->
+      <section class:list={[card, "flex flex-col gap-8 lg:gap-[59px] lg:px-0 lg:pt-[75px] lg:pb-[74px]"]}>
+        <div class="grid gap-6 lg:grid-cols-2 lg:gap-0">
+          <div class="flex flex-col gap-3 lg:col-start-2 lg:row-start-1 lg:max-w-[566px] lg:pt-[253px]">
+            <h2 class={featureTitle}>Virtual Card Screen</h2>
+            <p class={featureText}>
+              The virtual card flow was designed to give users a secure and seamless way to create, customize, fund, and manage virtual cards for global online payments, allowing them to control spending limits, freeze cards instantly, monitor transactions in real time, and make international payments across platforms like Netflix, Spotify, Apple Music, and other online services directly from their Finza wallet.
+            </p>
+          </div>
+          <Image
+            src={cardHero}
+            alt="Finza virtual card welcome screen"
+            widths={[505, 1010]}
+            sizes="(min-width: 1024px) 505px, 90vw"
+            class="w-full max-w-[505px] justify-self-center rounded-[20px] lg:col-start-1 lg:row-start-1 lg:ml-[79px] lg:justify-self-start"
+          />
+        </div>
+        <div class="mx-auto flex w-full max-w-[1157px] flex-col gap-6 lg:gap-[45px]">
+          <Image src={cardRow1} alt="Creating a virtual card, card overview and card transactions" widths={[1158]} sizes="(min-width: 1440px) 1157px, 90vw" class="w-full" />
+          <Image src={cardRow2} alt="Freezing a card, choosing a wallet and funding the card" widths={[1158]} sizes="(min-width: 1440px) 1157px, 90vw" class="w-full" />
+        </div>
+      </section>
+
+      <!-- Budget Insight Screen -->
+      <section class:list={[card, "grid gap-6 lg:grid-cols-[547fr_770fr] lg:gap-0 lg:px-0 lg:pt-[67px] lg:pb-[67px]"]}>
+        <div class="flex flex-col gap-3 lg:col-start-2 lg:row-start-1 lg:max-w-[644px] lg:pt-[28px]">
+          <h2 class="text-[24px] leading-[32px] font-medium md:text-[28px] md:leading-[36px]">Budget Insight Screen</h2>
+          <p class={featureText}>
+            The budget and insights screen was designed to help users better understand and manage their finances by giving them a clear overview of their spending habits across NGN, USD, and GBP wallets. Users can track expenses, monitor spending categories, set monthly budgets, view financial trends, and receive insights into where their money is going, helping them make smarter financial decisions while staying in control of their overall spending.
+          </p>
+        </div>
+        <Image
+          src={budget1}
+          alt="Finza insights screen with no budget set"
+          widths={[440, 880]}
+          sizes="(min-width: 1024px) 440px, 80vw"
+          class="mx-auto w-full max-w-[320px] lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:mx-0 lg:ml-[55px] lg:max-w-[440px]"
+        />
+        <Image
+          src={budget2}
+          alt="Finza insights screen with spending by category"
+          widths={[440, 880]}
+          sizes="(min-width: 1024px) 440px, 80vw"
+          class="mx-auto w-full max-w-[320px] lg:col-start-2 lg:row-start-2 lg:mx-0 lg:mt-[41px] lg:ml-[230px] lg:max-w-[440px]"
+        />
+      </section>
+
+      <!-- Other Screens -->
+      <section class:list={[card, "lg:px-[34px] lg:pt-[47px] lg:pb-[20px]"]}>
+        <h2 class="text-[32px] font-medium md:text-[40px] lg:ml-[24px]">Other Screens</h2>
+        <Image
+          src={otherScreens}
+          alt="A collage of other Finza screens"
+          widths={[1249]}
+          sizes="(min-width: 1440px) 1249px, 92vw"
+          class="mx-auto mt-6 w-full max-w-[1249px] lg:mt-[43px]"
+        />
+      </section>
+    </div>
+  </main>
+
+  <div class="mt-4 md:mt-12">
+    <Footer />
+  </div>
+</Layout>

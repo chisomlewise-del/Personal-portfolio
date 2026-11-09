@@ -1,0 +1,107 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import HowIWork from "../components/HowIWork.astro";
+import Footer from "../components/Footer.astro";
+import SayHi from "../components/SayHi.astro";
+
+// All photos in src/assets/about/ named photo-<row>-<number>.jpg.
+// To add or swap a photo, drop a 766×946 image in that folder with the same naming.
+const photos = import.meta.glob<{ default: ImageMetadata }>("../assets/about/photo-*.jpg", { eager: true });
+const row = (n: number) =>
+  Object.entries(photos)
+    .filter(([path]) => path.includes(`photo-${n}-`))
+    .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+    .map(([, mod]) => mod.default);
+
+// Row 1 slides left, row 2 slides right
+const rows = [
+  { images: row(1), reverse: false },
+  { images: row(2), reverse: true },
+];
+---
+
+<Layout title="About — Chisom Lewise" description="The person behind the pixels: a little about Chisom Lewise, Product Designer.">
+  <Nav />
+
+  <main>
+    <!-- Intro -->
+    <section class="mx-auto max-w-[1440px] px-5 pt-12 text-ink md:px-10 md:pt-[71px] xl:px-16">
+      <h1 data-reveal="up" class="text-[28px] leading-[36px] font-medium tracking-[0.4px] text-black md:text-[36px] md:leading-[44px]">
+        <!-- Photo stays attached to the last word, even when the title wraps -->
+        The person behind the{" "}
+        <span class="whitespace-nowrap">
+          pixels<SayHi size="title" class="ml-[5px]" />
+        </span>
+      </h1>
+
+      <div data-reveal="up" style="--reveal-delay: 100ms" class="copy mt-4 text-[16px] leading-[26px] tracking-[0.2px] md:mt-5 md:text-[18px] md:leading-[28px]">
+        <p>I'm a Product Designer who enjoys turning complex ideas into simple, thoughtful digital experiences. I enjoy the entire process  from understanding a problem and figuring out what actually matters to shaping ideas into interfaces that are intuitive, useful, and a little delightful. But there’s more to me than pixels, prototypes, and Figma files</p>
+        <div>
+          <p class="font-semibold">When I'm not designing...</p>
+          <p>You'll probably find me scrolling through Behance or Dribbble, feeding my eyes with good design and wondering how someone came up with such a brilliant idea.</p>
+        </div>
+        <p>I'm also a huge anime fan (Naruto forever 🍥), a novel lover, and someone who can get lost in music for hours. Lana Del Rey is a personal favourite</p>
+        <p>I love good food, discovering beautiful places, and visiting the beach. There's something about sitting by the ocean, listening to the waves, and breathing in the fresh air that makes everything feel a little lighter.</p>
+        <p>I'm curious by nature, and I think that curiosity shows up in the way I design, the things I enjoy, and how I see the world.</p>
+        <p>Good design inspires me. Good stories keep me curious. And the little things in life keep me grounded.</p>
+      </div>
+    </section>
+
+    <!-- Photo carousel: two rows that scroll forever in opposite directions -->
+    <section class="mt-12 flex flex-col gap-4 md:mt-[72px] md:gap-6" aria-label="Photos from my life">
+      {rows.map((r, rowIndex) => (
+        <div class="overflow-hidden motion-reduce:overflow-x-auto" data-reveal="up" style={`--reveal-delay: ${rowIndex * 150}ms`}>
+          <!-- The photos are drawn twice so the loop never shows a gap -->
+          <div
+            class:list={[
+              "flex w-max",
+              r.reverse
+                ? "motion-safe:animate-carousel-reverse"
+                : "motion-safe:animate-carousel",
+            ]}
+          >
+            {[0, 1].map((copy) => (
+              <ul class="flex gap-4 pr-4 md:gap-6 md:pr-6" aria-hidden={copy === 1 ? "true" : undefined}>
+                {r.images.map((img, i) => (
+                  <li class="h-[296px] w-[240px] shrink-0 overflow-hidden rounded-[20px] md:h-[473px] md:w-[383px] md:rounded-[30px]">
+                    <Image
+                      src={img}
+                      alt={copy ? "" : `Photo ${rowIndex * 9 + i + 1} from Chisom's life`}
+                      widths={[383, 766]}
+                      sizes="(min-width: 768px) 383px, 240px"
+                      class="h-full w-full object-cover"
+                    />
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <HowIWork>
+      <!-- Call to action at the end of the dark section -->
+      <div class="mx-auto mt-16 flex max-w-[1047px] flex-col items-center gap-6 text-center md:mt-[116px] md:pb-[23px]">
+        <div class="flex flex-col gap-4">
+          <h2 class="text-[26px] leading-[34px] font-medium tracking-[0.4px] md:text-[32px] md:leading-[40px]">Have a good project in mind?</h2>
+          <p class="text-[16px] leading-[26px] tracking-[0.2px] md:text-[18px] md:leading-[28px]">
+            I'd love to hear about it. Whether you're building something new, improving an existing product, or just want to talk design, my inbox is always open. Let's make something meaningful together.
+          </p>
+        </div>
+        <a
+          href="https://calendly.com/chisomlewise"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex h-[52px] w-[150px] items-center justify-center rounded-[50px] border border-[#f9f9f9] bg-white text-[16px] leading-[24px] font-medium tracking-[0.18px] text-ink shadow-[inset_3px_5px_5.2px_0px_rgba(228,228,228,0.25),inset_0px_4px_6.2px_0px_rgba(150,150,150,0.25)] transition-transform hover:-translate-y-0.5"
+        >
+          Contact me<span class="sr-only"> (book a call on Calendly, opens in a new tab)</span>
+        </a>
+      </div>
+    </HowIWork>
+  </main>
+
+  <Footer />
+</Layout>

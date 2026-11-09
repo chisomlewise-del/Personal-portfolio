@@ -1,0 +1,97 @@
+---
+// Chisom's little photo that sways and says hi on hover (or tap on phones).
+// Used next to the homepage hero title and the About page title.
+import { Image } from "astro:assets";
+import avatar from "../assets/avatar.jpg";
+
+interface Props {
+  /** "hero" = homepage size, "title" = a bit smaller, sits inside a heading */
+  size?: "hero" | "title";
+  class?: string;
+}
+const { size = "hero", class: className } = Astro.props;
+
+const box = size === "hero" ? "size-[50px] md:size-[55px]" : "size-[44px] md:size-[55px]";
+const photo =
+  size === "hero"
+    ? "size-[40px] rounded-[10px] md:size-[44px] md:rounded-[11px]"
+    : "size-[36px] rounded-[9px] md:size-[44px] md:rounded-[11px]";
+// Below 1024px the bubble sits above the photo. The script below picks which edge it lines up
+// with (data-align), so it always stays on screen whether or not the title wraps.
+const bubbleEdge = "right-0 group-data-[align=left]:right-auto group-data-[align=left]:left-0";
+const arrowEdge = "right-5 group-data-[align=left]:right-auto group-data-[align=left]:left-5";
+---
+
+<button
+  type="button"
+  class:list={[
+    "say-hi group relative inline-flex shrink-0 cursor-pointer items-center justify-center rounded-[12px] align-middle outline-none focus-visible:ring-2 focus-visible:ring-brand",
+    box,
+    className,
+  ]}
+  aria-label="Say hi to Chisom"
+>
+  <!-- Photo: sways gently while idle, straightens and grows on hover -->
+  <span class="block motion-safe:animate-sway group-hover:[animation-play-state:paused] group-data-[open=true]:[animation-play-state:paused]">
+    <Image
+      src={avatar}
+      alt="Chisom Lewise"
+      width={120}
+      class:list={[
+        "-rotate-[17.15deg] object-cover object-[50%_15%] shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-[rotate,scale,box-shadow] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:scale-[1.18] group-hover:rotate-0 group-hover:shadow-[0_10px_24px_rgba(0,0,0,0.18)] group-data-[open=true]:scale-[1.18] group-data-[open=true]:rotate-0",
+        photo,
+      ]}
+      loading="eager"
+    />
+  </span>
+
+  <!-- Waving hand -->
+  <span
+    class="pointer-events-none absolute -top-2 -right-3 scale-50 text-[22px] leading-none opacity-0 transition-[opacity,scale] duration-300 group-hover:scale-100 group-hover:opacity-100 group-data-[open=true]:scale-100 group-data-[open=true]:opacity-100 md:text-[24px]"
+    aria-hidden="true"
+  >
+    <span class="inline-block origin-[70%_80%] group-hover:motion-safe:animate-wave group-data-[open=true]:motion-safe:animate-wave">👋</span>
+  </span>
+
+  <!-- Speech bubble: above the photo on phones/tablets, beside it on wide screens -->
+  <span
+    class:list={[
+      "pointer-events-none absolute bottom-[calc(100%+14px)] translate-y-1 rounded-2xl bg-ink px-3.5 py-2 text-left text-[13px] leading-[18px] font-medium tracking-normal whitespace-nowrap text-white opacity-0 shadow-[0_8px_24px_rgba(0,0,0,0.18)] transition-[opacity,translate] duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-data-[open=true]:translate-y-0 group-data-[open=true]:opacity-100 md:text-[14px]",
+      "lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-[calc(100%+18px)] lg:translate-x-1 lg:-translate-y-1/2 lg:group-hover:translate-x-0 lg:group-hover:-translate-y-1/2 lg:group-data-[open=true]:translate-x-0 lg:group-data-[open=true]:-translate-y-1/2",
+      bubbleEdge,
+    ]}
+    role="tooltip"
+  >
+    Hey, that's me! Nice to meet you ✨
+    <span
+      class:list={[
+        "absolute top-full size-2.5 -translate-y-1/2 rotate-45 rounded-[2px] bg-ink lg:top-1/2 lg:right-full lg:left-auto lg:translate-x-1/2",
+        arrowEdge,
+      ]}
+    ></span>
+  </span>
+</button>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".say-hi").forEach((btn) => {
+    const bubble = btn.querySelector<HTMLElement>("[role=tooltip]")!;
+
+    // Pick the side for the bubble so it never runs off the screen
+    const place = () => {
+      if (innerWidth >= 1024) return delete btn.dataset.align; // wide screens: bubble sits beside the photo
+      const photo = btn.getBoundingClientRect();
+      btn.dataset.align = photo.right - bubble.offsetWidth < 8 ? "left" : "right";
+    };
+    btn.addEventListener("pointerenter", place);
+    btn.addEventListener("focus", place);
+
+    // On phones there's no hover, so a tap shows the greeting for a few seconds
+    let timer: number | undefined;
+    btn.addEventListener("click", () => {
+      place();
+      btn.dataset.open = "true";
+      clearTimeout(timer);
+      timer = window.setTimeout(() => (btn.dataset.open = "false"), 2600);
+    });
+  });
+</script>

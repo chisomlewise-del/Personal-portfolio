@@ -1,0 +1,104 @@
+---
+import { Image } from "astro:assets";
+import aha from "../assets/aha.png";
+
+const steps = [
+  {
+    title: "01 - Understand Before I Design",
+    text: "Every great product starts with understanding the right problem. My approach combines curiosity, strategic thinking, creativity, and collaboration to turn complex ideas into simple, meaningful digital experiences",
+  },
+  {
+    title: "02 - Connect the Dots",
+    text: "I break down complex requirements, explore user journeys, and connect insights to opportunities. My goal is to find the simplest, most effective way to solve the problem without losing sight of the bigger picture.",
+  },
+  {
+    title: "03 - Turn Thinking Into Design",
+    text: "This is where ideas take shape. I explore different directions, create intuitive interfaces, and build interactive prototypes. I balance usability, visual creativity, and business needs to make every design decision intentional.",
+  },
+  {
+    title: "04 -Question, Test & Refine",
+    text: "I don't believe the first solution is always the best. I welcome feedback, challenge assumptions, and refine designs based on user needs, stakeholder input, and technical possibilities.",
+  },
+  {
+    title: "05 - Design Beyond Handoff",
+    text: "My work doesn't end at the final screen. I collaborate with developers and stakeholders to ensure the experience translates into a functional product, while identifying opportunities to make it even better.",
+  },
+];
+
+// Only the first answer is in the Figma design.
+// TODO: the other answers are placeholders — rewrite them in your own words.
+const faqs = [
+  {
+    q: "What kind of products do you design?",
+    a: "I design digital experiences across fintech, SaaS, AI-powered platforms, and emerging products. I enjoy taking complex ideas and turning them into simple, intuitive experiences that people actually enjoy using.",
+  },
+  {
+    q: "What makes your approach to design different?",
+    a: "I start with the problem, not the screens. I dig into user needs and business goals first, so every design decision has a clear reason behind it.",
+  },
+  {
+    q: "How do you collaborate with developers and other teams?",
+    a: "I involve developers early, share clear specs and prototypes, and stay available through build to answer questions and adjust designs when technical realities change.",
+  },
+  {
+    q: "How do you know when a design is successful?",
+    a: "When it solves the problem it set out to solve. I look at usability testing, user feedback and product metrics to confirm the design is working and to find what to improve next.",
+  },
+  {
+    q: "How can we work together?",
+    a: "Reach out through any of the links below. Tell me a little about your product and goals, and we can figure out the best way to work together.",
+  },
+];
+---
+
+<section id="how-i-work" class="mt-16 bg-dark text-white md:mt-[62px]">
+  <div class="mx-auto max-w-[1440px] px-5 pt-10 pb-16 md:px-10 md:pt-[34px] md:pb-[62px] xl:px-16">
+    <div class="flex items-center gap-3">
+      <h2 class="text-[28px] leading-[36px] font-medium tracking-[0.4px] md:text-[32px] md:leading-[42px]">How i work</h2>
+      <Image src={aha} alt="" width={160} class="size-14 object-cover md:size-16" />
+    </div>
+
+    <p class="mt-6 max-w-[860px] text-[18px] leading-[28px] tracking-[0.48px] md:mt-[30px] md:text-[20px] md:leading-[30px]">
+      I don't just design screens. I think through problems. Every great product starts with understanding the right problem. My approach combines curiosity, strategic thinking, creativity, and collaboration to turn complex ideas into simple, meaningful digital experiences.
+    </p>
+
+    <!-- Process steps -->
+    <ol class="mt-8 flex flex-col gap-10 rounded-[28px] bg-dark-card px-6 py-10 md:mt-[37px] md:gap-[50px] md:rounded-[40px] md:px-[55px] md:py-[68px]">
+      {steps.map((step) => (
+        <li data-reveal="up" class="grid gap-3 lg:grid-cols-[minmax(0,1fr)_650px] lg:gap-0">
+          <h3 class="text-[18px] leading-[28px] font-medium tracking-[0.48px] md:text-[20px] md:leading-[30px]">{step.title}</h3>
+          <p class="border-b border-muted pb-6 text-[16px] leading-[26px] tracking-[0.18px] md:text-[18px] md:leading-[28px]">
+            {step.text}
+          </p>
+        </li>
+      ))}
+    </ol>
+
+    <!-- FAQ -->
+    <div class="mx-auto mt-16 max-w-[1119px] md:mt-[92px]" data-reveal="up">
+      <h2 class="text-center text-[26px] leading-[34px] font-medium tracking-[0.4px] md:text-[32px] md:leading-[40px]">
+        A Few Things You Might Be Wondering
+      </h2>
+      <div class="mt-6 flex flex-col gap-6 border-t border-muted pt-[34px] md:mt-[34px]">
+        {faqs.map((faq, i) => (
+          <details class="group border-b border-muted pb-5" open={i === 0}>
+            <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4">
+              <span class="text-[18px] leading-[26px] font-medium tracking-[0.24px] md:text-[20px] md:leading-[26px]">{faq.q}</span>
+              <img
+                src="/images/plus.svg"
+                alt=""
+                width="40"
+                height="40"
+                class="size-8 shrink-0 md:size-10"
+              />
+            </summary>
+            <p class="mt-4 max-w-[720px] text-[16px] leading-[26px] tracking-[0.18px] md:text-[18px] md:leading-[28px]">{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <!-- Optional extra content at the end of the section (used on the About page) -->
+    <slot />
+  </div>
+</section>

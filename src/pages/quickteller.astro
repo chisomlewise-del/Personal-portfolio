@@ -1,0 +1,234 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import CaseHeader from "../components/case-study/CaseHeader.astro";
+import TextBlock from "../components/case-study/TextBlock.astro";
+import RedesignNotes from "../components/case-study/RedesignNotes.astro";
+
+import hero from "../assets/quickteller/hero.png";
+import homeImg from "../assets/quickteller/home.png";
+import rechargeImg from "../assets/quickteller/recharge.png";
+import transferImg from "../assets/quickteller/transfer.png";
+import paymentImg from "../assets/quickteller/payment.png";
+import questionMark from "../assets/quickteller/question-mark.png";
+import other1 from "../assets/quickteller/other-1.png";
+import other2 from "../assets/quickteller/other-2.png";
+import other3 from "../assets/quickteller/other-3.png";
+import other4 from "../assets/quickteller/other-4.png";
+import other5 from "../assets/quickteller/other-5.png";
+import other6 from "../assets/quickteller/other-6.png";
+import other7 from "../assets/quickteller/other-7.png";
+
+const meta = [
+  { label: "ROLE", value: "Product Designer" },
+  { label: "INDUSTRY", value: "Fintech" },
+  { label: "TIMELINE", value: "3 Weeks" },
+  { label: "YEAR", value: "2026" },
+];
+
+const problems = [
+  {
+    title: "Visual Inconsistency Across the Interface",
+    text: "The app had no consistent design language. Icon styles changed between screens some outlined, some filled, some illustrated. Component treatments were applied differently depending on where you were in the app. The bottom navigation used red as an active state indicator a color that communicates error or urgency everywhere else in the product.",
+  },
+  {
+    title: "Interaction & UX Gaps That Created Friction",
+    text: "Several core interactions were designed in ways that made simple tasks harder than they needed to be. The button to fund a user's eCash wallet arguably the most important action on the homepage was a small, right-aligned text link at the top of the wallet card, invisible unless you knew to look for it.",
+  },
+  {
+    title: "Product Logic Issues",
+    text: "This was the most significant finding, and the one that went beyond visual design entirely. When attempting to fund an eCash wallet, the app presented eCash itself as a valid payment method. Selecting it resulted in a circular transaction money was debited from the eCash wallet and immediately credited back to the same wallet, with zero net change and zero value to the user.",
+    dmSans: true, // card 3 uses DM Sans in the Figma file
+  },
+];
+
+const redesigns = [
+  {
+    image: homeImg,
+    alt: "Quickteller home screen, before and after the redesign",
+    title: "Home Page",
+    intro: "The home screen is the user's first point of interaction, making clarity, consistency, and accessibility essential. My focus was to simplify the experience, improve visual hierarchy, and make key actions easier to discover.",
+    wrong: ["Poor Visibility of Key Actions.", "Inconsistent Iconography", "Misleading Navigation States"],
+    changed: ["Made Funding More Accessible", "Unified the Icon System", "Improved Navigation Clarity"],
+  },
+  {
+    image: rechargeImg,
+    alt: "Quickteller recharge screen, before and after the redesign",
+    title: "Recharge Screen Redesign",
+    intro: "The recharge screen is a frequently used feature for airtime and data purchases. My focus was to simplify the transaction flow, improve clarity, and create a more intuitive experience.",
+    wrong: ["Poor Transaction Flow", "Unclear Credit Information", "Inconsistent Network Logos"],
+    changed: ["Reorganized the Transaction Flow", "Improved Credit Clarity", "Standardized Network Selection"],
+  },
+  {
+    image: transferImg,
+    alt: "Quickteller transfer screen, before and after the redesign",
+    title: "Transfer Screen Redesign",
+    intro: "The transfer screen had usability issues that made sending money less intuitive. My focus was to improve clarity, simplify transaction options, and create a more helpful experience for both new and returning users.",
+    wrong: ["Unclear Transfer Options", "Poor Use of Screen Space", "No Recent Recipients"],
+    changed: ["Made Transfer Options Clearer", "Simplified the Layout", "Introduced Recent Recipients"],
+  },
+  {
+    image: paymentImg,
+    alt: "Quickteller payment screen, before and after the redesign",
+    title: "Payment Screen Redesign",
+    intro: "During my audit, I discovered a payment logic issue that allowed users to fund their eCash wallet using the same wallet as a payment method. My focus was to eliminate confusing payment options and ensure a more logical, seamless transaction experience.",
+    wrong: ["Incorrect Payment Options", "Lack of Contextual Filtering"],
+    changed: ["Introduced Contextual Payment Options", "Simplified Payment Selection", "Improved Transaction Logic"],
+  },
+];
+
+const otherScreens = [other1, other2, other3, other4, other5, other6, other7];
+
+// Shared settings for the big full-width images
+const wideSizes = "(min-width: 1440px) 1312px, 92vw";
+const wideWidths = [800, 1312, 1800, 2624];
+---
+
+<Layout
+  title="Quickteller Case Study — Chisom Lewise"
+  description="A UI & Product Audit of InterSwitch's Consumer Payment App"
+>
+  <Nav />
+
+  <main class="mx-auto max-w-[1440px] px-5 pt-10 text-ink md:px-10 md:pt-[65px] xl:px-16">
+    <CaseHeader
+      title="Quickteller Case Study: Improving Quickteller Mobile App"
+      subtitle="A UI & Product Audit of InterSwitch's Consumer Payment App"
+      meta={meta}
+    />
+
+    <div class="case-flow mt-14 md:mt-24">
+      <section class="flex flex-col gap-3">
+        <h2 class="text-[24px] leading-[32px] font-medium tracking-[-0.165px] md:text-[28px] md:leading-[36px]">Introduction</h2>
+        <div class="copy text-[16px] leading-[26px] tracking-[0.15px] md:text-[18px] md:leading-[28px]">
+          <p>
+            As a product designer interested in fintech, I downloaded Quickteller to understand how one of Nigeria's most established payment platforms translated its powerful infrastructure into a mobile experience. While the app successfully delivers its core functionality, I noticed several visual inconsistencies, interaction gaps, and product logic issues that introduced unnecessary friction.
+          </p>
+          <p>
+            Rather than redesign the app from scratch, I chose to improve it. Existing users are already familiar with its navigation and workflows, so preserving that familiarity was just as important as addressing usability issues. My goal was to refine the experience, strengthen trust, and improve clarity while keeping the product's core structure intact.
+          </p>
+          <p>
+            This case study explores the problems I identified, the reasoning behind each design decision, and how thoughtful refinements can create a more polished and intuitive user experience.
+          </p>
+        </div>
+      </section>
+
+      <Image
+        src={hero}
+        alt="Two phones showing the redesigned Quickteller app"
+        widths={wideWidths}
+        sizes={wideSizes}
+        class="aspect-[1315/890] w-full rounded-[20px] object-cover md:rounded-[30px]"
+        loading="eager"
+      />
+
+      <TextBlock
+        class="section-start"
+        title="The Problem"
+        paragraphs={[
+          "During my initial exploration of the app, I noticed a pattern that went beyond surface-level aesthetics. The issues I encountered were not random they fell into a consistent theme: an app that had grown feature by feature over time  without a unifying design language to hold it together.",
+          "The result was an experience that felt inconsistent. Buttons that didn't behave like buttons. Labels that didn't explain what they meant. Interactive states that gave users no feedback. Payment options that appeared in contexts where they made no logical sense. Small decisions, stacked on top of each other, quietly eroding the trust of every user who opened the app to move their money.",
+        ]}
+      />
+
+      <!-- The three problems, drawn as stacked cards on the Quickteller gradient -->
+      <div class="relative overflow-hidden rounded-[20px] bg-[linear-gradient(152.44deg,#0e1e27_4.87%,#09517b_88.49%)] px-5 py-10 md:rounded-[30px] lg:px-[74px] lg:pt-[45px] lg:pb-[124px]">
+        <!-- Decorations (hidden on small screens so they don't cover text) -->
+        <div class="pointer-events-none hidden lg:block" aria-hidden="true">
+          <Image src={questionMark} alt="" width={114} class="absolute top-[414px] left-[calc(91.67%+13px)] h-[87px] w-[57px] rotate-[20.04deg] object-contain" />
+          <Image src={questionMark} alt="" width={114} class="absolute top-[633px] left-[61px] h-[87px] w-[57px] rotate-[20.04deg] object-contain" />
+          <img src="/images/quickteller/quickteller-logo.svg" alt="" width="116" height="29" class="absolute top-[667px] left-[calc(91.67%-19px)] -rotate-[47.38deg]" />
+          <img src="/images/quickteller/quickteller-logo.svg" alt="" width="105" height="26" class="absolute top-[403px] left-[12px] rotate-[24.28deg]" />
+        </div>
+
+        <ol class="relative grid gap-10 md:grid-cols-2 md:gap-x-[51px] lg:gap-y-[98px]">
+          {problems.map((problem, i) => (
+            <li data-reveal="up" style={`--reveal-delay: ${i * 140}ms`} class:list={["flex flex-col items-center gap-5", i === 2 && "md:col-span-2 md:mx-auto md:w-[calc(50%-25.5px)]"]}>
+              <span class="flex size-12 items-center justify-center rounded-[30px] border-2 border-[#f7f7f7] font-dm text-[20px] leading-[28px] font-semibold tracking-[-0.165px] text-white md:size-[60px]">
+                {i + 1}
+              </span>
+              <!-- White card with two soft layers peeking out underneath -->
+              <div class="relative w-full pb-[42px]">
+                <div class="absolute bottom-[18px] left-1/2 h-[172px] w-[94.6%] -translate-x-[calc(50%-7px)] rounded-[30px] bg-[#acdff1] opacity-40" aria-hidden="true"></div>
+                <div class="absolute bottom-0 left-[8.8%] h-[185px] w-[84.8%] rounded-[30px] bg-[#5fb4d6] opacity-30" aria-hidden="true"></div>
+                <div
+                  class:list={[
+                    "relative flex min-h-[240px] flex-col justify-center gap-3 rounded-[30px] bg-white px-5 py-6 text-center tracking-[-0.165px] text-qt-navy md:px-[22px]",
+                    problem.dmSans && "font-dm",
+                  ]}
+                >
+                  <h3 class="text-[18px] leading-[26px] font-semibold md:text-[20px] md:leading-[28px]">{problem.title}</h3>
+                  <p class="text-[15px] leading-[27px]">{problem.text}</p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <TextBlock
+        class="section-start"
+        title="The Solution"
+        paragraphs={[
+          "Before diving into the screens, it is important to establish what this redesign is and what it is not.",
+          "This was not a redesign for redesign's sake. I did not open Figma with the goal of making QuickTeller look different. I opened it with a specific list of problems that needed solving, and every decision made in this project traces directly back to one of those problems. If something was working, I left it alone. If something was creating friction, eroding trust, or communicating the wrong thing to the user, I fixed it.",
+          "The result is a redesign that should feel immediately familiar to any existing QuickTeller user. The navigation structure is the same. The core flows are the same. The brand colors, typography, and overall personality of the product are unchanged. What changed is the consistency with which those elements are applied, the clarity with which each screen communicates its purpose, and the logic with which each interaction responds to the user.",
+          "A user who opens the redesigned QuickTeller should not think \"this looks completely different.\" They should think \"this feels right\" and not be able to immediately explain why. That invisible quality ,the absence of confusion, the presence of trust was the goal of every decision made here.",
+        ]}
+      />
+
+      {redesigns.map((r) => (
+        <>
+          <Image
+            src={r.image}
+            alt={r.alt}
+            widths={wideWidths}
+            sizes={wideSizes}
+            class="section-start aspect-[1315/794] w-full rounded-[20px] object-cover md:rounded-[30px]"
+          />
+          <RedesignNotes title={r.title} intro={r.intro} wrong={r.wrong} changed={r.changed} />
+        </>
+      ))}
+
+      <!-- Other screens -->
+      <section class="section-start overflow-hidden rounded-[20px] bg-[linear-gradient(124.27deg,#0e1e27_4.87%,#09517b_88.49%)] px-5 pt-8 pb-10 md:rounded-[30px] lg:px-[60px] lg:pt-[43px] lg:pb-[43px]">
+        <h2 class="text-center font-dm text-[clamp(2.5rem,7vw,5rem)] leading-[1.2] font-semibold tracking-[-0.165px] text-white/20">
+          Other Screens
+        </h2>
+        <div class="mx-auto mt-6 grid max-w-[1195px] grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:mt-[25px] lg:grid-cols-3 lg:gap-x-[65px]">
+          {otherScreens.map((screen, i) => (
+            <Image
+              data-reveal="up"
+              style={`--reveal-delay: ${(i % 3) * 110}ms`}
+              src={screen}
+              alt={`Other redesigned Quickteller screen ${i + 1}`}
+              widths={[360, 720]}
+              sizes="(min-width: 1024px) 355px, (min-width: 640px) 45vw, 80vw"
+              class:list={[
+                "h-auto w-full max-w-[300px] sm:max-w-none",
+                i === otherScreens.length - 1 && "sm:col-span-2 sm:w-1/2 lg:col-span-1 lg:col-start-2 lg:w-full",
+              ]}
+            />
+          ))}
+        </div>
+      </section>
+
+      <TextBlock
+        class="section-start"
+        title="Conclusion"
+        paragraphs={[
+          "This project began with curiosity and a desire to understand QuickTeller beyond its interface. What I discovered was a product with strong capabilities but several usability challenges affecting the overall experience.",
+          "My goal wasn't to reinvent QuickTeller, but to improve what already existed. Every design decision was driven by a specific problem identified during the audit, focusing on clarity, consistency, accessibility, and better transaction flows.",
+          "My biggest takeaway was that great product design goes beyond aesthetics. It's about understanding how a product behaves, questioning existing decisions, and creating experiences that truly make sense for users.",
+          "I chose QuickTeller because I believe in what Interswitch is building. This redesign reflects how I approach product design: with curiosity, intentionality, and a commitment to bridging the gap between strong product functionality and meaningful user experiences.",
+        ]}
+      />
+    </div>
+  </main>
+
+  <div class="mt-4 md:mt-12">
+    <Footer />
+  </div>
+</Layout>

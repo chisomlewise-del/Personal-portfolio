@@ -1,0 +1,215 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import CaseHeader from "../components/case-study/CaseHeader.astro";
+
+import hand from "../assets/careerly/hand.png";
+import home from "../assets/careerly/home.png";
+import findJobs from "../assets/careerly/find-jobs.png";
+import jobDetails from "../assets/careerly/job-details.png";
+import prep from "../assets/careerly/prep.png";
+import track from "../assets/careerly/track.png";
+import resume from "../assets/careerly/resume.png";
+
+const meta = [
+  { label: "ROLE", value: "Product Designer" },
+  { label: "TIMELINE", value: "3 Weeks" },
+  { label: "YEAR", value: "2026" },
+];
+
+const problems = [
+  {
+    title: "1. Job Platforms Are Disconnected",
+    intro: "Most platforms focus only on listing jobs. Users are forced to jump between:",
+    points: ["Resume builders", "Job boards", "Interview prep tools"],
+    outro: "This fragmented experience increases stress and reduces productivity.",
+  },
+  {
+    title: "2. Lack of Personalized Guidance",
+    intro: "Job seekers often struggle with:",
+    points: [
+      "Knowing which roles truly match their skills",
+      "Tailoring resumes for specific jobs",
+      "Understanding why they are not getting responses",
+    ],
+    outro: "Existing platforms rarely offer actionable, personalized feedback.",
+  },
+  {
+    title: "3. Poor Visibility Into Job Search Progress",
+    intro: "Many users apply to multiple roles but:",
+    points: ["Lose track of applications", "Don’t measure success rates", "Can’t identify what’s working or not"],
+    outro: "This leads to burnout and discouragement.",
+  },
+];
+
+const solutions = [
+  {
+    title: "1. AI-Powered Job Matching",
+    intro: "Careerly analyzes the user’s profile, skills, experience, and preferences to:",
+    points: [
+      "Recommend jobs with high compatibility scores",
+      "Highlight roles with strong match percentages",
+      "Reduce irrelevant job applications",
+    ],
+    outro: "This helps users apply smarter, not harder.",
+  },
+  {
+    title: "2. AI Resume Builder & Review",
+    intro: "Users can:",
+    points: [
+      "Create resumes using AI assistance",
+      "Receive instant AI feedback on clarity, structure, and relevance",
+      "Get recommendations tailored to their experience level and target roles",
+    ],
+    outro: "The AI acts as a virtual career coach,helping users improve chances of getting noticed.",
+  },
+  {
+    title: "3. Application Tracking & Insights",
+    intro: "Careerly provides visibility into the job search process by showing:",
+    points: ["Number of applications submitted", "Interview invitations received", "Response rates"],
+    outro: "This data helps users understand what strategies are working and where improvements are needed.",
+  },
+  {
+    title: "4. Centralized Career Hub",
+    intro: "With features like:",
+    points: ["Recent job listings", "Personalized dashboards", "Clear navigation (Jobs, Resume, Prep, Track)"],
+    outro: "Careerly functions as a single source of truth for job seekers.",
+  },
+];
+
+const jobScreens = [
+  {
+    image: home,
+    alt: "Careerly home screen",
+    caption: "The Home screen serves as the user’s central dashboard, providing a personalized greeting and quick access to job search activities.",
+  },
+  {
+    image: findJobs,
+    alt: "Careerly find jobs screen",
+    caption: "Displays a list of available job opportunities tailored to the user’s preferences and profile.",
+  },
+  {
+    image: jobDetails,
+    alt: "Careerly job details screen",
+    caption: "Displays the company logo, job title, company name, and location, giving users immediate context about the role they are viewing.",
+  },
+];
+
+const wideSizes = "(min-width: 1440px) 1312px, 92vw";
+const wideWidths = [800, 1312, 1800, 2624];
+
+const h2 = "text-[24px] leading-[32px] font-medium tracking-[-0.165px] text-ink md:text-[28px] md:leading-[36px]";
+---
+
+<Layout title="Careerly Case Study — Chisom Lewise" description="An AI Powered Job Search & Career Management Mobile App">
+  <Nav />
+
+  <main class="mx-auto max-w-[1440px] px-5 pt-10 text-ink md:px-10 md:pt-[65px] xl:px-16">
+    <CaseHeader title="Careerly" subtitle="An AI Powered Job Search & Career Management Mobile App" meta={meta} />
+
+    <div class="case-flow mt-14 text-[16px] leading-[26px] tracking-[0.027px] text-nav md:mt-24 md:text-[18px] md:leading-[28px]">
+      <section class="flex flex-col gap-3">
+        <h2 class={h2}>Project Overview</h2>
+        <div class="copy">
+          <p>Careerly is an AI-powered job search and career management platform designed to help job seekers navigate the entire application process more effectively. Beyond simply applying for jobs, Careerly empowers users to build AI-assisted resumes, receive personalized job recommendations, and track their job search progress in one seamless experience.</p>
+          <p>The goal was to reduce the frustration, guesswork, and inefficiency commonly associated with job hunting.</p>
+        </div>
+      </section>
+
+      <Image
+        src={hand}
+        alt="A hand holding a phone showing the Careerly home screen"
+        widths={[800, 1315]}
+        sizes={wideSizes}
+        class="aspect-[1315/823] w-full rounded-[20px] object-cover md:rounded-[30px]"
+        loading="eager"
+      />
+
+      <!-- Problem + Solution: narrower text column, like the design -->
+      <div class="section-start flex max-w-[720px] flex-col gap-14 md:gap-24">
+        <section class="flex flex-col gap-6">
+          <div class="flex flex-col gap-3">
+            <h2 class={h2}>The Problem</h2>
+            <div class="copy">
+              <p>Job searching today is fragmented, stressful, and time-consuming.</p>
+              <p>Through observation and research, several key problems emerged:</p>
+            </div>
+          </div>
+          {problems.map((item) => (
+            <div>
+              <h3 class="font-semibold">{item.title}</h3>
+              <p>{item.intro}</p>
+              <ul class="list-disc pl-[27px]">{item.points.map((point) => <li>{point}</li>)}</ul>
+              <p>{item.outro}</p>
+            </div>
+          ))}
+        </section>
+
+        <section class="flex flex-col gap-6">
+          <h2 class={h2}>The Solution</h2>
+          {solutions.map((item) => (
+            <div>
+              <h3 class="font-semibold">{item.title}</h3>
+              <p>{item.intro}</p>
+              <ul class="list-disc pl-[27px]">{item.points.map((point) => <li>{point}</li>)}</ul>
+              <p>{item.outro}</p>
+            </div>
+          ))}
+        </section>
+      </div>
+
+      <!-- Home, Find Jobs and Job Details screens with captions -->
+      <section class="section-start rounded-[20px] bg-[#efefef] px-5 py-10 md:rounded-[30px] lg:px-[41px] lg:py-12" aria-label="Job search screens">
+        <div class="grid gap-10 md:grid-cols-3 md:gap-5">
+          {jobScreens.map((screen, i) => (
+            <figure class="flex flex-col items-center gap-[10px]" data-reveal="up" style={`--reveal-delay: ${i * 120}ms`}>
+              <Image
+                src={screen.image}
+                alt={screen.alt}
+                width={339}
+                class="h-auto w-full max-w-[339px]"
+              />
+              <figcaption class="max-w-[398px] text-center text-[16px] leading-[22px]">{screen.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <Image
+        src={prep}
+        alt="The Prep page helps users prepare for interviews through guided practice, AI-generated questions, and mock interviews, all in one place."
+        widths={wideWidths}
+        sizes={wideSizes}
+        class="h-auto w-full"
+      />
+      <Image
+        src={track}
+        alt="The Track page helps users monitor and manage all job applications in one place, providing visibility into their current application status and progress."
+        widths={wideWidths}
+        sizes={wideSizes}
+        class="h-auto w-full"
+      />
+      <Image
+        src={resume}
+        alt="Careerly resume builder screens: choosing a path, uploading, editing, education and skills, experience, and finalising the resume"
+        widths={wideWidths}
+        sizes={wideSizes}
+        class="h-auto w-full"
+      />
+
+      <section class="section-start flex flex-col gap-3">
+        <h2 class={h2}>Final Thoughts</h2>
+        <div class="copy">
+          <p>Careerly demonstrates how AI can be used responsibly to enhance human decision-making, not replace it. This project reflects my ability to design end-to-end product experiences that balance usability, intelligence, and empathy.</p>
+          <p>Please share your feedback and observations through any of the links below. Thank you!!</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="mt-4 md:mt-12">
+    <Footer />
+  </div>
+</Layout>

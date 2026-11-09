@@ -1,0 +1,112 @@
+---
+import { Image } from "astro:assets";
+import folder from "../assets/folder.png";
+import quickteller from "../assets/project-quickteller.png";
+import finza from "../assets/project-finza.png";
+import base360 from "../assets/project-base360.jpg";
+import careerly from "../assets/project-careerly.png";
+import paypro from "../assets/project-paypro.png";
+import auvanta from "../assets/project-auvanta.png";
+
+// To add or edit a project, change this list.
+// TODO: replace each "href" with the link to the case study.
+const projects = [
+  {
+    title: "Quickteller Redesign",
+    image: quickteller,
+    href: "/quickteller",
+    description:
+      "Nigeria's digital payment ecosystem has grown rapidly, with platforms like Quickteller by Interswitch enabling millions of users to pay bills, buy airtime, transfer money, and manage everyday financial transactions from their phones.",
+  },
+  {
+    title: "Finza- Fintech Mobile App",
+    image: finza,
+    href: "/finza",
+    description:
+      "Finza is a multi-currency fintech mobile application that enables users to manage money across NGN, USD, and GBP, send and receive funds, convert currencies, pay bills, and spend globally using a virtual card.",
+  },
+  {
+    title: "Base 360 Landing Page",
+    image: base360,
+    href: "/base360",
+    description:
+      "Base 360 is an AI-powered customer engagement platform. The platform combined several complex capabilities including AI agents, customer communication, CRM, and marketing automation into a single product.",
+  },
+  {
+    title: "Careerly Mobile App",
+    image: careerly,
+    href: "/careerly",
+    inter: true, // this description uses Inter in the Figma file
+    description:
+      "Careerly is an AI-powered job search and career management platform designed to help job seekers navigate the entire application process more effectively",
+  },
+  {
+    title: "PayPro- Payroll Web design",
+    image: paypro,
+    href: "/paypro",
+    description:
+      "Paypro is a modern payroll web application designed to help HR teams and Business owners manage employee records and run payroll in a clear, structured and efficient way.",
+  },
+  {
+    title: "Auvanta Dashboard",
+    image: auvanta,
+    href: "/auvanta",
+    inter: true,
+    description:
+      "Auvanta is a web based accounting platform for small and medium businesses in Nigeria.",
+  },
+];
+---
+
+<section id="work" class="mx-auto flex max-w-[1440px] flex-col gap-6 px-5 pt-12 md:px-10 md:pt-16 xl:px-16">
+  <div class="flex items-center gap-3" data-reveal="up">
+    <h2 class="text-[28px] leading-[36px] font-medium text-ink md:text-[32px] md:leading-[42px]">My Work</h2>
+    <Image src={folder} alt="" width={120} class="size-10 md:size-12" />
+  </div>
+
+  <!-- Each whole card is one link (big, easy tap target on phones) -->
+  <div class="grid gap-6 lg:grid-cols-2 lg:gap-x-[30px]">
+    {projects.map((project, i) => (
+      <a
+        href={project.href}
+        data-reveal="up"
+        style={`--reveal-delay: ${(i % 2) * 120}ms`}
+        class="group flex flex-col gap-3 rounded-[32px] bg-card px-4 pt-4 pb-6 transition-[translate,box-shadow] duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(0,0,0,0.08)] sm:rounded-[50px] sm:px-[25px] sm:pt-[22px] sm:pb-[33px] lg:min-h-[584px]"
+      >
+        <div class="overflow-hidden rounded-[20px] sm:rounded-[30px]">
+          <Image
+            src={project.image}
+            alt={`${project.title} preview`}
+            widths={[591, 1182]}
+            sizes="(min-width: 1440px) 591px, (min-width: 1024px) 45vw, 92vw"
+            class="aspect-[591/402] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.045]"
+          />
+        </div>
+
+        <div class="flex flex-col gap-2 sm:gap-3">
+          <div class="flex items-center justify-between gap-4">
+            <h3 class="text-[18px] leading-[24px] font-medium text-ink sm:text-[20px] sm:leading-[26px]">{project.title}</h3>
+            <span class="flex shrink-0 items-center gap-1.5 text-[18px] leading-[24px] font-medium text-ink sm:text-[20px] sm:leading-[26px]">
+              <span class="max-sm:sr-only">View Design</span>
+              <img
+                src="/images/arrow-up-right.svg"
+                alt=""
+                width="22"
+                height="22"
+                class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </span>
+          </div>
+          <p
+            class:list={[
+              "text-[16px] leading-[24px] tracking-[0.16px] text-body",
+              project.inter ? "font-inter sm:leading-[24px]" : "sm:leading-[22px]",
+            ]}
+          >
+            {project.description}
+          </p>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>

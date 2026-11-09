@@ -1,0 +1,115 @@
+---
+import { Image } from "astro:assets";
+import avatar from "../assets/avatar.jpg";
+
+// "external" links open in a new tab (the resume lives on Google Drive)
+const links = [
+  { label: "Work", href: "/#work" },
+  { label: "About me", href: "/about" },
+  {
+    label: "Resume",
+    href: "https://drive.google.com/file/d/1t7x4eRD1JJ_ks6U5UymOTV3fceIR1Tl6/view?usp=sharing",
+    external: true,
+  },
+];
+
+// Highlight the link for the page we're on
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) => href === path;
+---
+
+<!-- Floating "glass" nav: stays at the top of the screen while you scroll -->
+<header class="sticky top-0 z-50 px-3 pt-3 md:px-6 md:pt-4">
+  <nav
+    class="relative mx-auto flex h-16 max-w-[1200px] items-center justify-between rounded-full border border-black/[0.06] bg-white/75 pr-2 pl-2 shadow-[0_8px_32px_rgba(0,0,0,0.06)] backdrop-blur-xl backdrop-saturate-150 md:h-[68px] md:pl-2.5"
+    aria-label="Main"
+  >
+    <!-- Name -->
+    <a href="/" class="flex items-center gap-3 rounded-full pr-3">
+      <Image
+        src={avatar}
+        alt=""
+        width={96}
+        class="size-11 rounded-full object-cover object-[50%_15%] ring-2 ring-white md:size-12"
+        loading="eager"
+      />
+      <span class="flex flex-col">
+        <span class="text-[16px] leading-[20px] font-semibold tracking-[0.1px] text-ink md:text-[17px] md:leading-[22px]">Chisom Lewise</span>
+        <span class="text-[12px] leading-[16px] text-body md:text-[13px]">Product Designer</span>
+      </span>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex">
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
+            aria-current={isActive(link.href) ? "page" : undefined}
+            class:list={[
+              "flex h-10 items-center rounded-full px-4 text-[15px] font-medium transition-colors",
+              isActive(link.href) ? "bg-ink/[0.07] text-ink" : "text-body hover:bg-ink/[0.05] hover:text-ink",
+            ]}
+          >
+            {link.label}
+            {link.external && (
+              <svg class="ml-1 size-3.5 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+            )}
+            {link.external && <span class="sr-only"> (opens in a new tab)</span>}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Contact button -->
+    <a
+      href="https://calendly.com/chisomlewise"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group hidden h-12 items-center gap-2 rounded-full bg-ink pr-4 pl-5 text-[15px] font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-colors hover:bg-black md:flex"
+    >
+      Contact me<span class="sr-only"> (book a call on Calendly, opens in a new tab)</span>
+      <svg class="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7 17 17 7M8 7h9v9" />
+      </svg>
+    </a>
+
+    <!-- Mobile menu (works without JavaScript) -->
+    <details class="group md:hidden">
+      <summary class="flex size-12 cursor-pointer list-none items-center justify-center rounded-full bg-ink text-white" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path class="group-open:hidden" d="M4 8h16M4 16h16" />
+          <path class="hidden group-open:block" d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </summary>
+      <div class="absolute top-[calc(100%+8px)] right-0 left-0 flex flex-col gap-1 rounded-[28px] border border-black/[0.06] bg-white/95 p-2 shadow-[0_16px_40px_rgba(0,0,0,0.12)] backdrop-blur-xl">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
+            aria-current={isActive(link.href) ? "page" : undefined}
+            class:list={[
+              "flex h-12 items-center rounded-[20px] px-4 text-[16px] font-medium",
+              isActive(link.href) ? "bg-ink/[0.07] text-ink" : "text-body hover:bg-ink/[0.05]",
+            ]}
+          >
+            {link.label}
+            {link.external && (
+              <svg class="ml-1.5 size-4 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+            )}
+            {link.external && <span class="sr-only"> (opens in a new tab)</span>}
+          </a>
+        ))}
+        <a href="https://calendly.com/chisomlewise" target="_blank" rel="noopener noreferrer" class="mt-1 flex h-12 items-center justify-center gap-2 rounded-[20px] bg-ink text-[16px] font-medium text-white">
+          Contact me<span class="sr-only"> (book a call on Calendly, opens in a new tab)</span>
+          <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 17 17 7M8 7h9v9" />
+          </svg>
+        </a>
+      </div>
+    </details>
+  </nav>
+</header>

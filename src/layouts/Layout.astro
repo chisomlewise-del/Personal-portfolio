@@ -1,0 +1,56 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Chisom Lewise — Product Designer",
+  description = "A Product Designer building purposeful digital experiences for people and businesses.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <!-- Turn on scroll-reveal animations early (prevents a flash). Skipped for reduced motion,
+         so content is always visible if JavaScript or animations are off. -->
+    <script is:inline>
+      if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('reveal-ready');
+      }
+    </script>
+  </head>
+  <body id="top">
+    <slot />
+
+    <script>
+      // Scroll-reveal: anything with data-reveal fades/rises in when it scrolls into view.
+      // Every item in a case study (.case-flow) gets it automatically.
+      if (document.documentElement.classList.contains("reveal-ready")) {
+        document.querySelectorAll<HTMLElement>(".case-flow > *").forEach((el) => {
+          if (el.hasAttribute("data-reveal")) return;
+          el.dataset.reveal = el.matches("img, picture") ? "zoom" : "up";
+        });
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+        );
+        document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
+      }
+    </script>
+  </body>
+</html>

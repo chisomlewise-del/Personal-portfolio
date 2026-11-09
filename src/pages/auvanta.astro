@@ -1,0 +1,77 @@
+---
+// Placeholder page while the Auvanta case study is being designed.
+// When it's ready, replace this page with the real case study.
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import preview from "../assets/project-auvanta.png";
+---
+
+<Layout title="Auvanta Dashboard — Coming soon — Chisom Lewise" description="The Auvanta case study is in progress and coming soon.">
+  <Nav />
+
+  <main class="mx-auto max-w-[1440px] px-5 pt-10 text-ink md:px-10 md:pt-[65px] xl:px-16">
+    <a
+      href="/#work"
+      class="inline-flex h-[46px] items-center gap-2 rounded-[50px] bg-card px-4 text-[16px] leading-[24px] font-medium tracking-[0.18px] transition-colors hover:bg-[#e2e2e2]"
+    >
+      <img src="/images/arrow-back.svg" alt="" width="22" height="22" />
+      Back
+    </a>
+
+    <!-- Coming-soon card -->
+    <section class="relative mt-8 overflow-hidden rounded-[28px] bg-dark text-white md:rounded-[40px]">
+      <!-- Blurred project preview in the background -->
+      <Image
+        src={preview}
+        alt=""
+        width={591}
+        class="absolute inset-0 h-full w-full scale-110 object-cover opacity-40 blur-2xl"
+        aria-hidden="true"
+      />
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(32,32,32,0.55)_0%,rgba(32,32,32,0.92)_70%)]" aria-hidden="true"></div>
+
+      <div class="relative mx-auto flex max-w-[720px] flex-col items-center px-6 py-16 text-center md:py-[110px]">
+        <span class="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[13px] font-medium tracking-[0.12em] uppercase backdrop-blur">
+          <span class="relative flex size-2.5" aria-hidden="true">
+            <span class="absolute inline-flex h-full w-full rounded-full bg-[#f5b74a] opacity-75 motion-safe:animate-ping"></span>
+            <span class="relative inline-flex size-2.5 rounded-full bg-[#f5b74a]"></span>
+          </span>
+          Project in progress
+        </span>
+
+        <h1 class="mt-6 text-[44px] leading-[1.05] font-medium tracking-[-0.5px] md:text-[72px]">
+          Coming <span class="text-brand">soon</span>
+        </h1>
+
+        <p class="mt-3 text-[20px] leading-[28px] font-medium text-white/90 md:text-[24px] md:leading-[32px]">Auvanta Dashboard</p>
+
+        <p class="mt-4 max-w-[560px] text-[16px] leading-[26px] text-white/70 md:text-[18px]">
+          I’m currently designing Auvanta, a web-based accounting platform for small and medium businesses in Nigeria. The full case study will be shared here once the design is complete.
+        </p>
+
+        <div class="mt-10 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4">
+          <a
+            href="/#work"
+            class="flex h-[52px] w-full items-center justify-center rounded-[50px] bg-white px-7 text-[16px] font-medium text-ink shadow-[inset_3px_5px_5.2px_0px_rgba(228,228,228,0.25),inset_0px_4px_6.2px_0px_rgba(150,150,150,0.25)] transition-transform hover:-translate-y-0.5 sm:w-auto"
+          >
+            See other projects
+          </a>
+          <a
+            href="https://calendly.com/chisomlewise"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex h-[52px] w-full items-center justify-center rounded-[50px] border border-white/25 px-7 text-[16px] font-medium text-white transition-colors hover:bg-white/10 sm:w-auto"
+          >
+            Get in touch<span class="sr-only"> (book a call on Calendly, opens in a new tab)</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="mt-4 md:mt-12">
+    <Footer />
+  </div>
+</Layout>

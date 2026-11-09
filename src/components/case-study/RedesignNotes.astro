@@ -1,0 +1,30 @@
+---
+// "Screen name / What was wrong / What I Changed and Why" block.
+interface Props {
+  title: string;
+  intro: string;
+  wrong: string[];
+  changed: string[];
+}
+const { title, intro, wrong, changed } = Astro.props;
+
+const groups = [
+  { heading: "What was wrong", items: wrong },
+  { heading: "What I Changed and Why", items: changed },
+];
+---
+
+<section class="flex flex-col gap-6">
+  <div class="flex flex-col gap-3">
+    <h2 class="text-[24px] leading-[32px] font-medium tracking-[-0.165px] md:text-[28px] md:leading-[36px]">{title}</h2>
+    <p class="max-w-[720px] text-[16px] leading-[26px] tracking-[0.15px] md:text-[18px] md:leading-[28px]">{intro}</p>
+  </div>
+  {groups.map((group) => (
+    <div class="flex flex-col gap-2">
+      <h3 class="text-[18px] leading-[26px] font-semibold md:text-[20px] md:leading-[28px]">{group.heading}</h3>
+      <ul class="list-disc pl-[27px] text-[16px] leading-[26px] tracking-[0.15px] md:text-[18px] md:leading-[28px]">
+        {group.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  ))}
+</section>

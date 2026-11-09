@@ -1,0 +1,55 @@
+---
+// Profile links open in a new tab; email opens the visitor's mail app
+const socials = [
+  { name: "Email Chisom", href: "mailto:chisomlewise@gmail.com", icon: "/images/email.svg" },
+  { name: "Chisom on LinkedIn", href: "https://www.linkedin.com/in/chisom-lewise-4748a3291", icon: "/images/linkedin.svg", external: true },
+  { name: "Chisom on X (Twitter)", href: "https://x.com/mimilewise", icon: "/images/x.svg", external: true },
+  { name: "Chisom on Behance", href: "https://www.behance.net/chisomlewise", icon: "/images/behance.svg", external: true },
+];
+---
+
+<footer id="contact" class="overflow-hidden pt-12 md:pt-[46px]">
+  <div class="mx-auto flex max-w-[1440px] flex-col gap-6 px-5 md:flex-row md:items-center md:justify-between md:px-10 xl:px-16">
+    <p class="max-w-[520px] text-[20px] leading-[28px] tracking-[0.2px] sm:text-[22px] sm:leading-[30px] md:text-[32px] md:tracking-[0.4px] md:leading-[40px]">
+      <span class="font-medium">Good ideas deserve </span><span class="font-medium text-brand">great design</span>.{" "}
+      <br />
+      <span class="font-mali font-medium text-muted">Let's make it happen.</span>
+    </p>
+    <a href="#top" class="-my-3 flex shrink-0 items-center gap-2 self-start py-3 font-mali text-[16px] leading-[20px] font-semibold tracking-[0.2px] md:self-center">
+      Back to top
+      <img src="/images/arrow-up.svg" alt="" width="20" height="20" />
+    </a>
+  </div>
+
+  <!-- Giant name: scales with the screen, never bigger than the design (380px) -->
+  <p
+    class="mt-6 text-center text-[min(26.4vw,380px)] leading-[1.053] font-semibold tracking-[0.01em] text-ghost select-none md:mt-[23px]"
+    aria-hidden="true"
+  >
+    Chisom
+  </p>
+
+  <div class="flex flex-col items-center gap-3 px-5">
+    <p class="text-[16px] leading-[22px] font-medium">Reach me</p>
+    <ul class="flex gap-3 rounded-[50px] border border-ink-soft bg-ink p-2.5 shadow-[inset_3px_5px_5.2px_0px_rgba(119,119,119,0.25),inset_0px_4px_6.2px_0px_rgba(152,152,152,0.25)] sm:gap-5 sm:px-2.5 sm:py-[11px]">
+      {socials.map((s) => (
+        <li>
+          <a
+            href={s.href}
+            target={s.external ? "_blank" : undefined}
+            rel={s.external ? "noopener noreferrer" : undefined}
+            aria-label={s.external ? `${s.name} (opens in a new tab)` : s.name}
+            title={s.name}
+            class="flex size-[58px] items-center justify-center rounded-[50px] bg-ink-soft transition-[background-color,translate] duration-200 hover:-translate-y-0.5 hover:bg-[#4a4a4a] focus-visible:ring-2 focus-visible:ring-brand focus-visible:outline-none sm:size-[70px]"
+          >
+            <img src={s.icon} alt="" width="32" height="32" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="mt-[33px] border-t border-rule pt-[13px] pb-[42px] text-center text-[14px] leading-[18px] font-medium tracking-[0.14px]">
+    © 2026 Chisomlewise.works
+  </div>
+</footer>
