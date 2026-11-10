@@ -7,7 +7,8 @@ export default defineConfig({
   // Your live address. Used for link previews (LinkedIn, WhatsApp, X) and the sitemap.
   // If you move to your own domain later, change it here.
   site: "https://chisomlewise.vercel.app",
-  integrations: [sitemap()],
+  // The sitemap lists every page for Google, except ones kept out of search (coming-soon pages)
+  integrations: [sitemap({ filter: (page) => !page.includes("/auvanta") })],
   vite: {
     plugins: [tailwindcss()],
   },

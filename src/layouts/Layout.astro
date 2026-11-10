@@ -6,17 +6,53 @@ interface Props {
   description?: string;
   /** Picture shown when the page is shared on LinkedIn, WhatsApp, X… (in /public) */
   image?: string;
+  /** Keep this page out of Google (e.g. "coming soon" or "not found" pages) */
+  noindex?: boolean;
 }
 
 const {
   title = "Chisom Lewise — Product Designer",
   description = "A Product Designer building purposeful digital experiences for people and businesses.",
   image = "/og-image.jpg",
+  noindex = false,
 } = Astro.props;
 
 // Full web addresses (share previews need complete links, not just "/about")
 const pageUrl = new URL(Astro.url.pathname, Astro.site);
 const imageUrl = new URL(image, Astro.site);
+const home = new URL("/", Astro.site).href;
+
+// Structured data: an "ID card" in Google's own format (schema.org) saying who this site belongs to.
+// It helps Google connect the site with Chisom's LinkedIn, Behance and X profiles.
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${home}#chisom`,
+      name: "Chisom Lewise",
+      jobTitle: "Product Designer",
+      description: "Product Designer crafting intuitive, purposeful digital experiences across fintech, SaaS and AI products.",
+      url: home,
+      image: new URL("/apple-touch-icon.png", Astro.site).href,
+      email: "mailto:chisomlewise@gmail.com",
+      knowsAbout: ["Product Design", "UI Design", "UX Design", "User Research", "Prototyping", "Fintech", "SaaS"],
+      sameAs: [
+        "https://www.linkedin.com/in/chisom-lewise-4748a3291",
+        "https://www.behance.net/chisomlewise",
+        "https://x.com/mimilewise",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${home}#website`,
+      name: "Chisom Lewise — Product Designer",
+      url: home,
+      inLanguage: "en",
+      author: { "@id": `${home}#chisom` },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -27,7 +63,10 @@ const imageUrl = new URL(image, Astro.site);
     <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="canonical" href={pageUrl} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta name="author" content="Chisom Lewise" />
     <meta name="theme-color" content="#f5f5f5" />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
     <!-- Browser tab + phone home-screen icons -->
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
