@@ -31,7 +31,7 @@
   --color-label: #707070;     /* case study labels (ROLE, YEAR …) */
   --color-qt-navy: #00425f;   /* Quickteller brand text */
 
-  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee: marquee 120s linear infinite;          /* tools row (3 sets per copy, ~40px/s) */
   --animate-drift: drift 16s ease-in-out infinite alternate;            /* hero glows */
   --animate-drift-slow: drift 22s ease-in-out infinite alternate-reverse;
   @keyframes drift {
@@ -67,8 +67,8 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.55; }
   }
-  --animate-carousel: marquee 90s linear infinite;          /* About page photos */
-  --animate-carousel-reverse: marquee 90s linear infinite reverse;
+  --animate-carousel: marquee 180s linear infinite;         /* About page photos (2 sets per copy, ~40px/s) */
+  --animate-carousel-reverse: marquee 180s linear infinite reverse;
   @keyframes marquee {
     to { transform: translateX(-50%); }
   }

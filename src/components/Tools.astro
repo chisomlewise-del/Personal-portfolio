@@ -15,6 +15,10 @@ const tools = [
   { name: "Cursor", src: "/images/tool-cursor.svg", w: 55.3, h: 63 },
   { name: "Framer", src: "/images/tool-framer.svg", w: 46.59, h: 69.89, square: true },
 ];
+// Each copy of the scrolling row repeats the tools this many times, so the row is always
+// wider than the screen (even 4K monitors). One full set is ~1,560px wide.
+const repeats = 3;
+const loop = Array.from({ length: repeats }, (_, r) => tools.map((tool) => ({ ...tool, repeat: r }))).flat();
 ---
 
 <section class="flex flex-col items-center gap-6 pt-16 md:pt-[65px]" aria-labelledby="tools-title">
@@ -26,7 +30,7 @@ const tools = [
   <div class="flex w-max items-center pb-1 motion-safe:animate-marquee">
     {[0, 1].map((copy) => (
       <ul class="flex items-center gap-[74px] pr-[74px]" aria-hidden={copy === 1 ? "true" : undefined}>
-        {tools.map((tool) => (
+        {loop.map((tool) => (
           <li
             class:list={[
               "flex items-center justify-center rounded-[25px] bg-white shadow-[0px_1px_4px_0px_rgba(12,12,13,0.05)]",
@@ -35,9 +39,9 @@ const tools = [
             title={tool.name}
           >
             {tool.image ? (
-              <Image src={tool.image} alt={copy ? "" : tool.name} width={120} style={`width:${tool.w}px;height:${tool.h}px`} />
+              <Image src={tool.image} alt={copy || tool.repeat ? "" : tool.name} width={120} style={`width:${tool.w}px;height:${tool.h}px`} />
             ) : (
-              <img src={tool.src} alt={copy ? "" : tool.name} width={tool.w} height={tool.h} loading="lazy" />
+              <img src={tool.src} alt={copy || tool.repeat ? "" : tool.name} width={tool.w} height={tool.h} loading="lazy" />
             )}
           </li>
         ))}

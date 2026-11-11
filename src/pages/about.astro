@@ -67,11 +67,11 @@ const rows = [
           >
             {[0, 1].map((copy) => (
               <ul class="flex gap-4 pr-4 md:gap-6 md:pr-6" aria-hidden={copy === 1 ? "true" : undefined}>
-                {r.images.map((img, i) => (
+                {[...r.images, ...r.images].map((img, i) => (
                   <li class="h-[296px] w-[240px] shrink-0 overflow-hidden rounded-[20px] md:h-[473px] md:w-[383px] md:rounded-[30px]">
                     <Image
                       src={img}
-                      alt={copy ? "" : `Photo ${rowIndex * 9 + i + 1} from Chisom's life`}
+                      alt={copy || i >= r.images.length ? "" : `Photo ${rowIndex * 9 + i + 1} from Chisom's life`}
                       widths={[383, 766]}
                       sizes="(min-width: 768px) 383px, 240px"
                       class="h-full w-full object-cover"
